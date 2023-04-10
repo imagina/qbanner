@@ -9,7 +9,7 @@ export default {
     page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'ibanners.cms.sidebar.adminBanner',
-    icon: 'far fa-newspaper',
+    icon: 'fa-light fa-rectangle-history-circle-plus',
     authenticated: true,
     subHeader: {refresh: true}
   },
@@ -21,7 +21,7 @@ export default {
     page: () => import('@imagina/qbanner/_pages/admin/positions/form'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'ibanners.cms.sidebar.adminBannerEdit',
-    icon: 'fas fa-image',
+    icon: 'fa-light fa-image',
     authenticated: true,
     subHeader : {
       refresh: true,
@@ -36,7 +36,7 @@ export default {
     page: () => import('@imagina/qbanner/_pages/admin/banner/create.vue'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'ibanners.cms.sidebar.adminIndex',
-    icon: 'fas fa-images',
+    icon: 'fa-light fa-image',
     authenticated: true,
   },
   updateBanner: {
@@ -47,7 +47,7 @@ export default {
     page: () => import('@imagina/qbanner/_pages/admin/banner/show.vue'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'ibanners.cms.sidebar.adminIndex',
-    icon: 'fas fa-images',
+    icon: 'fa-light fa-image',
     authenticated: true,
   },
 }
