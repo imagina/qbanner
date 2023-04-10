@@ -19,11 +19,11 @@
             <div class="float-right">
               <q-btn-group class="q-mr-sm">
                 <q-btn-toggle
-                  v-model="viewTable"
-                  toggle-color="primary"
-                  color="grey-3"
-                  text-color="grey-8"
-                  :options="[
+                    v-model="viewTable"
+                    toggle-color="primary"
+                    color="grey-3"
+                    text-color="grey-8"
+                    :options="[
                 {icon: 'fas fa-align-justify', value: true},
                 {icon: 'fas fa-th', value: false}
               ]"
@@ -35,7 +35,7 @@
               <!--Button refresh data-->
               <q-btn color="info" icon="fas fa-sync" class="q-ml-sm"
                      @click="getData({pagination:pagination,search:filter.search},true)">
-                <q-tooltip>{{$tr('isite.cms.label.refresh')}}</q-tooltip>
+                <q-tooltip>{{ $tr('isite.cms.label.refresh') }}</q-tooltip>
               </q-btn>
             </div>
           </div>
@@ -45,12 +45,12 @@
             <div class="row q-col-gutter-xs">
               <div class="col-12 col-sm-4 col-md-3" v-for="slider in dataTable" :key="slider.id">
                 <div class="q-subheading bg-primary text-white text-left q-px-sm q-py-xs">
-                  {{slider.id+'. '+slider.name}}
+                  {{ slider.id + '. ' + slider.name }}
                 </div>
 
                 <q-carousel swipeable animated arrows v-model="carouselModel[slider.id]"
                             :fullscreen.sync="carouselFullScreen[slider.id]"
-                             autoplay height="200px" :ref="`carousel${slider.id}`">
+                            autoplay height="200px" :ref="`carousel${slider.id}`">
 
                   <q-carousel-slide v-for="slide in position.banners" :key="slide.id"
                                     :name="slide.id" :img-src="slide.imageUrl">
@@ -73,7 +73,7 @@
                          :to="{name: 'qbanner.admin.sliders.show', params: {id: slider.id}}"
                          v-if="$auth.hasAccess('slider.sliders.edit') && hasPermissionRecordMAster(slider).edit">
                     <q-tooltip :offset="[5, 5]">
-                      {{$tr('isite.cms.label.edit')}}
+                      {{ $tr('isite.cms.label.edit') }}
                     </q-tooltip>
                   </q-btn>
 
@@ -82,22 +82,22 @@
                          class="q-mx-xs" @click="dialogDeleteSlider.handler(slider.id)"
                          v-if="$auth.hasAccess('slider.sliders.destroy') && hasPermissionRecordMAster(slider).destroy">
                     <q-tooltip :offset="[5, 5]">
-                      {{$tr('isite.cms.label.delete')}}
+                      {{ $tr('isite.cms.label.delete') }}
                     </q-tooltip>
                   </q-btn>
                 </div>
               </div>
               <div class="col-12">
                 <q-pagination
-                  class="justify-center q-ma-lg"
-                  v-if="pagination.rowsNumber > 1"
-                  v-model="pagination.page"
-                  color="primary"
-                  @input="getData({pagination:pagination,search:filter.search})"
-                  :max="pagination.rowsNumber"
-                  :max-pages="6"
-                  boundary-links
-                  direction-links
+                    class="justify-center q-ma-lg"
+                    v-if="pagination.rowsNumber > 1"
+                    v-model="pagination.page"
+                    color="primary"
+                    @input="getData({pagination:pagination,search:filter.search})"
+                    :max="pagination.rowsNumber"
+                    :max-pages="6"
+                    boundary-links
+                    direction-links
                 />
               </div>
             </div>
@@ -106,13 +106,13 @@
           <!--== Table ==-->
           <div class="col-12" v-if="viewTable">
             <q-table
-              :loading="loading"
-              :data="dataTable"
-              :columns="columns"
-              :pagination.sync="pagination"
-              row-key="filename"
-              @request="getData"
-              class="no-shadow"
+                :loading="loading"
+                :data="dataTable"
+                :columns="columns"
+                :pagination.sync="pagination"
+                row-key="filename"
+                @request="getData"
+                class="no-shadow"
             >
               <!--= Actions =-->
               <q-td slot="body-cell-actions"
@@ -120,25 +120,25 @@
                 <!--== Slider Active ==-->
                 <q-toggle v-model="props.row.active" @input="updateOrCreateSlider(props.row)">
                   <q-tooltip :offset="[5, 5]">
-                    {{props.row.active ? 'Unactive' : 'Active'}}
+                    {{ props.row.active ? 'Unactive' : 'Active' }}
                   </q-tooltip>
                 </q-toggle>
 
                 <q-btn
-                  icon="fas fa-pen"
-                  color="green"
-                  size="sm"
-                  class="q-mx-xs"
-                  @click="showSliderModal(props.row)"
-                  v-if="$auth.hasAccess('slider.sliders.edit')"/>
+                    icon="fas fa-pen"
+                    color="green"
+                    size="sm"
+                    class="q-mx-xs"
+                    @click="showSliderModal(props.row)"
+                    v-if="$auth.hasAccess('slider.sliders.edit')"/>
 
                 <q-btn
-                  icon="far fa-trash-alt"
-                  color="red"
-                  size="sm"
-                  class="q-mx-xs"
-                  @click="dialogDeleteSlider.handler(props.row.id)"
-                  v-if="$auth.hasAccess('slider.sliders.destroy')"/>
+                    icon="far fa-trash-alt"
+                    color="red"
+                    size="sm"
+                    class="q-mx-xs"
+                    @click="dialogDeleteSlider.handler(props.row.id)"
+                    v-if="$auth.hasAccess('slider.sliders.destroy')"/>
               </q-td>
 
             </q-table>
@@ -156,7 +156,7 @@
           <!--Header-->
           <q-toolbar class="bg-primary text-white">
             <q-toolbar-title>
-              <label>{{$tr('ibanners.cms.createSlider')}}</label>
+              <label>{{ $tr('ibanners.cms.createSlider') }}</label>
             </q-toolbar-title>
             <q-btn flat v-close-popup icon="fas fa-times"/>
           </q-toolbar>
@@ -175,12 +175,12 @@
                     <q-btn icon="fas fa-pen" color="green" size="xs" class="q-mx-xs"
                            v-if="hasPermissionRecordMAster(slide).edit"
                            @click="showSlideModal(slide)">
-                      <q-tooltip>{{$tr('isite.cms.label.edit')}}</q-tooltip>
+                      <q-tooltip>{{ $tr('isite.cms.label.edit') }}</q-tooltip>
                     </q-btn>
                     <q-btn icon="far fa-trash-alt" color="red" size="xs" class="q-mx-xs"
                            v-if="hasPermissionRecordMAster(slide).destroy"
                            @click="deleteBanner(slide.id, index)">
-                      <q-tooltip>{{$tr('isite.cms.label.delete')}}</q-tooltip>
+                      <q-tooltip>{{ $tr('isite.cms.label.delete') }}</q-tooltip>
                     </q-btn>
                   </div>
                 </div>
@@ -235,7 +235,7 @@
         <q-card class="backend-page" style="minWidth: 80vw; minHeight: 80vh">
           <!--Header-->
           <q-toolbar class="bg-primary text-white">
-            <q-toolbar-title>{{$tr('ibanners.cms.updateSlide')}}</q-toolbar-title>
+            <q-toolbar-title>{{ $tr('ibanners.cms.updateSlide') }}</q-toolbar-title>
             <q-btn flat v-close-popup icon="fas fa-times"/>
           </q-toolbar>
 
@@ -292,13 +292,13 @@
                             {value: 'video', label: 'Video'},
                             {value: 'image', label: 'Image'}
                           ]"/>
-                <div class="input-title">{{`${$tr('isite.cms.form.image')}`}}</div>
+                <div class="input-title">{{ `${$tr('isite.cms.form.image')}` }}</div>
                 <media-form
-                  entity="Modules\Slider\Entities\Slide"
-                  :entity-id="bannerToEdit.id ? bannerToEdit.id : ''"
-                  v-model="locale.formTemplate.mediasSingle"
-                  zone="slideimage"
-                  :key="mediaKey"
+                    entity="Modules\Slider\Entities\Slide"
+                    :entity-id="bannerToEdit.id ? bannerToEdit.id : ''"
+                    v-model="locale.formTemplate.mediasSingle"
+                    zone="slideimage"
+                    :key="mediaKey"
                 />
               </div>
             </div>
@@ -317,296 +317,298 @@
 </template>
 
 <script>
-  /*Components*/
-  import draggable from 'vuedraggable'
-  import mediaForm from '@imagina/qmedia/_components/form'
+/*Components*/
+import draggable from 'vuedraggable'
+import mediaForm from '@imagina/qmedia/_components/form'
 
-  export default {
-    props: {},
-    components: {
-      draggable: draggable,
-      mediaForm
-    },
-    mounted () {
-      this.$nextTick(function () {
-        this.getData({ pagination: this.pagination, search: this.filter.search })
-      })
-    },
-    data () {
-      return {
-        carouselModel: {},
-        carouselFullScreen: {},
-        locale: {
-          fields: {
-            target: null,
-            externalImageUrl: '',
-            mediasSingle: {},
-            positionId: '',
-            position: 0,
-            type: 'auto',
-            options: {
-              masterRecord: 0
-            }
-          },
-          fieldsTranslatable: {
-            title: '',
-            caption: '',
-            active: true,
-            url: '',
-            uri: '',
-            customHtml: '',
+export default {
+  props: {},
+  components: {
+    draggable: draggable,
+    mediaForm
+  },
+  mounted() {
+    this.$nextTick(function () {
+      this.getData({pagination: this.pagination, search: this.filter.search})
+    })
+  },
+  data() {
+    return {
+      carouselModel: {},
+      carouselFullScreen: {},
+      locale: {
+        fields: {
+          target: null,
+          externalImageUrl: '',
+          mediasSingle: {},
+          positionId: '',
+          position: 0,
+          type: 'auto',
+          options: {
+            masterRecord: 0
           }
         },
-        dataTable: [],
-        mediaKey: this.$uid(),
-        modalSlider: false,
-        modalSlide: false,
-        positionToEdit: { options: { masterRecord: 0 } },
-        bannerToEdit: { options: { masterRecord: 0 } },
-        dialogDeleteSlider: {
-          handler: (id) => {
-            this.$q.dialog({
-              title: 'Confirm',
-              ok: 'Delete',
-              message: 'you are sure to eliminate this slider?',
-              cancel: 'Cancel'
-            }).onOk(() => {
-              this.deletePosition(id)
-            }).onCancel(() => {
-            })
-          }
-        },
-        viewTable: false,
-        pagination: {
-          page: 1,
-          rowsPerPage: 15,
-          rowsNumber: 1
-        },
-        loading: false,
-        filter: {
-          search: ''
-        },
-        columns: [
-          { name: 'id', label: 'ID', field: 'id' },
-          {
-            name: 'name', label: 'Name', field: 'name',
-            align: 'left', sortable: true, style: 'width: 40%'
-          },
-          {
-            name: 'createdAt', label: 'Created At', field: 'createdAt',
-            format: val => val ? this.$trd(val) : '-',
-            align: 'left', sortable: true
-          },
-          {
-            name: 'actions', label: 'actions', align: 'center'
-          },
-
-        ],
-      }
-    },
-    computed: {
-      //Has manage master record
-      canManageRecordMaster () {
-        let response = true
-
-        if (this.positionToEdit.id && !this.$auth.hasAccess('isite.master.records.edit')) {
-          response = false
+        fieldsTranslatable: {
+          title: '',
+          caption: '',
+          active: true,
+          url: '',
+          uri: '',
+          customHtml: '',
         }
-        if (!this.positionToEdit.id && !this.$auth.hasAccess('isite.master.records.create')) {
-          response = false
-        }
-
-        return response
       },
+      dataTable: [],
+      mediaKey: this.$uid(),
+      modalSlider: false,
+      modalSlide: false,
+      positionToEdit: {options: {masterRecord: 0}},
+      bannerToEdit: {options: {masterRecord: 0}},
+      dialogDeleteSlider: {
+        handler: (id) => {
+          this.$q.dialog({
+            title: 'Confirm',
+            ok: 'Delete',
+            message: 'you are sure to eliminate this slider?',
+            cancel: 'Cancel'
+          }).onOk(() => {
+            this.deletePosition(id)
+          }).onCancel(() => {
+          })
+        }
+      },
+      viewTable: false,
+      pagination: {
+        page: 1,
+        rowsPerPage: 15,
+        rowsNumber: 1
+      },
+      loading: false,
+      filter: {
+        search: ''
+      },
+      columns: [
+        {name: 'id', label: 'ID', field: 'id'},
+        {
+          name: 'name', label: 'Name', field: 'name',
+          align: 'left', sortable: true, style: 'width: 40%'
+        },
+        {
+          name: 'createdAt', label: 'Created At', field: 'createdAt',
+          format: val => val ? this.$trd(val) : '-',
+          align: 'left', sortable: true
+        },
+        {
+          name: 'actions', label: 'actions', align: 'center'
+        },
+
+      ],
+    }
+  },
+  computed: {
+    //Has manage master record
+    canManageRecordMaster() {
+      let response = true
+
+      if (this.positionToEdit.id && !this.$auth.hasAccess('isite.master.records.edit')) {
+        response = false
+      }
+      if (!this.positionToEdit.id && !this.$auth.hasAccess('isite.master.records.create')) {
+        response = false
+      }
+
+      return response
     },
-    methods: {
-      async getData ({ pagination, search }, refresh = false) {
-        this.loading = true
-        // clear storage cache
-        if (refresh) {
-          this.$cache.remove('apiRoutes.qbanner.positions')
-        }
+  },
+  methods: {
+    async getData({pagination, search}, refresh = false) {
+      this.loading = true
+      // clear storage cache
+      if (refresh) {
+        this.$cache.remove('apiRoutes.qbanner.positions')
+      }
 
-        let params = {
-          params: {
-            filter: {
-              search: this.filter.search,
-              allTranslations: true
-            },
-            page: pagination.page,
-            take: pagination.rowsPerPage,
+      let params = {
+        params: {
+          filter: {
+            search: this.filter.search,
+            allTranslations: true
           },
-          refresh: refresh
+          page: pagination.page,
+          take: pagination.rowsPerPage,
+        },
+        refresh: refresh
+      }
+
+      // index all media by params
+      this.$crud.index('apiRoutes.qbanner.positions', params).then(response => {
+        this.dataTable = response.data
+
+        this.pagination.rowsPerPage = response.meta.page.perPage
+        this.pagination.page = response.meta.page.currentPage
+        this.pagination.rowsNumber = response.meta.page.lastPage
+
+        if (this.modalSlider) {
+          let slider = this.dataTable.find(slider => slider.id === this.positionToEdit.id)
+          this.positionToEdit = slider
         }
 
-        // index all media by params
-        this.$crud.index('apiRoutes.qbanner.positions', params).then(response => {
-          this.dataTable = response.data
-
-          this.pagination.rowsPerPage = response.meta.page.perPage
-          this.pagination.page = response.meta.page.currentPage
-          this.pagination.rowsNumber = response.meta.page.lastPage
-
-          if (this.modalSlider) {
-            let slider = this.dataTable.find(slider => slider.id === this.positionToEdit.id)
-            this.positionToEdit = slider
-          }
-
-          this.loading = false
-        }).catch(error => {
-          this.$alert.error({ message: this.$tr('isite.cms.message.errorRequest'), pos: 'bottom' })
+        this.loading = false
+      }).catch(error => {
+        this.$apiResponse.handleError(error, () => {
+          this.$alert.error({message: this.$tr('isite.cms.message.errorRequest'), pos: 'bottom'})
           this.loading = false//hide loading
         })
-      },
+      })
+    },
 
-      showSliderModal (slider) {
-        if (slider) {
-          this.positionToEdit = this.$clone(Object.assign({}, this.positionToEdit, slider))
-        } else {
-          this.positionToEdit = {
-            name: '',
-            systemName: '',
-            active: true,
-            slides: [],
-            options: { masterRecord: 0 }
-          }
+    showSliderModal(slider) {
+      if (slider) {
+        this.positionToEdit = this.$clone(Object.assign({}, this.positionToEdit, slider))
+      } else {
+        this.positionToEdit = {
+          name: '',
+          systemName: '',
+          active: true,
+          slides: [],
+          options: {masterRecord: 0}
         }
-        this.modalSlider = true
-      },
-
-      showSlideModal (slide) {
-        if (slide) {
-          //slide.mediasSingle = {}
-          this.bannerToEdit = slide
-          this.locale.form = slide
-        } else {
-          this.locale.form = this.bannerToEdit = {
-            title: '',
-            caption: '',
-            active: 1,
-            url: '',
-            uri: '',
-            customHtml: '',
-            target: null,
-            externalImageUrl: '',
-            mediasSingle: {},
-            positionId: this.positionToEdit.id,
-            position: this.positionToEdit.banners.length
-          }
-          this.locale.form.positionId = this.positionToEdit.id
-          this.locale.form.position = this.positionToEdit.banners.length
-        }
-        this.mediaKey = this.$uid()
-        this.modalSlide = true
-      },
-
-      updateOrCreateSlider (data) {
-        this.loading = true
-        if (this.positionToEdit.id) {
-          this.$crud.update('apiRoutes.qbanner.positions', data.id, data).then(response => {
-            this.$alert.info({ message: this.$tr('isite.cms.message.recordUpdated') })
-            this.getData({ pagination: this.pagination, search: this.filter.search }, true)
-            this.modalSlider = false
-          }).catch(error => {
-            this.$alert.error({ message: this.$tr('isite.cms.message.recordNoUpdated') })
-            this.loading = false
-          })
-        } else {
-          this.$crud.create('apiRoutes.qbanner.positions', data).then(response => {
-            this.$alert.info({ message: `${this.$tr('isite.cms.message.recordCreated')}` })
-            this.getData({ pagination: this.pagination, search: this.filter.search }, true)
-            this.modalSlider = false
-          }).catch(error => {
-            this.$alert.error({ message: `${this.$tr('isite.cms.message.recordNoCreated')}` })
-            this.loading = false
-          })
-        }
-      },
-
-      updateOrCreateSlide () {
-        this.loading = true
-        if (this.bannerToEdit.id) {
-          this.$crud.update('apiRoutes.qbanner.banners', this.bannerToEdit.id, this.locale.form).then(response => {
-            this.$alert.info({ message: this.$tr('isite.cms.message.recordUpdated') })
-            this.getData({ pagination: this.pagination, search: this.filter.search }, true)
-          }).catch(error => {
-            this.$alert.error({ message: this.$tr('isite.cms.message.recordNoUpdated') })
-            this.loading = false
-          })
-        } else {
-          this.$crud.create('apiRoutes.qbanner.banners', this.locale.form).then(response => {
-            this.$alert.info({ message: `${this.$tr('isite.cms.message.recordCreated')}` })
-            this.getData({ pagination: this.pagination, search: this.filter.search }, true)
-          }).catch(error => {
-            this.$alert.error({ message: `${this.$tr('isite.cms.message.recordNoCreated')}` })
-            this.loading = false
-          })
-        }
-
-      },
-
-      deletePosition (id) {
-        this.loading = true
-        this.$crud.delete('apiRoutes.qbanner.positions', id).then(response => {
-          this.$alert.info({ message: this.$tr('isite.cms.message.recordDeleted') })
-          this.getData({ pagination: this.pagination, search: this.filter.search }, true)
-        }).catch(error => {
-          this.$alert.error({ message: this.$tr('isite.cms.message.recordNoDeleted'), pos: 'bottom' })
-          this.loading = false
-        })
-      },
-
-      deleteBanner (slideId, pos) {
-        this.loading = true
-        this.$crud.delete('apiRoutes.qbanner.banners', slideId).then(response => {
-          this.$alert.info({ message: this.$tr('isite.cms.message.recordDeleted') })
-          this.positionToEdit.banners.splice(pos, 1)
-          this.getData({ pagination: this.pagination, search: this.filter.search }, true)
-        }).catch(error => {
-          this.$alert.error({ message: this.$tr('isite.cms.message.recordNoDeleted'), pos: 'bottom' })
-          this.loading = false
-        })
-      },
-
-      //Complete slug Only when is creation
-      setSlug () {
-        if (!this.positionToEdit.id) {
-          //Set slug as title
-          let slug = this.positionToEdit.name.trim().split(' ').join('-').toLowerCase()
-          this.positionToEdit.systemName = this.$clone(slug.normalize('NFD').replace(/[\u0300-\u036f]/g, ''))
-        }
-      },
-
-      hasPermissionRecordMAster (record) {
-        let options = record.options || false
-        let response = {
-          create: true,
-          edit: true,
-          index: true,
-          destroy: true,
-        }
-
-        if (options && parseInt(options.masterRecord)) {
-          response = {
-            create: this.$auth.hasAccess('isite.master.records.create'),
-            edit: this.$auth.hasAccess('isite.master.records.edit'),
-            index: this.$auth.hasAccess('isite.master.records.index'),
-            destroy: this.$auth.hasAccess('isite.master.records.destroy')
-          }
-        }
-
-        return response
       }
+      this.modalSlider = true
+    },
+
+    showSlideModal(slide) {
+      if (slide) {
+        //slide.mediasSingle = {}
+        this.bannerToEdit = slide
+        this.locale.form = slide
+      } else {
+        this.locale.form = this.bannerToEdit = {
+          title: '',
+          caption: '',
+          active: 1,
+          url: '',
+          uri: '',
+          customHtml: '',
+          target: null,
+          externalImageUrl: '',
+          mediasSingle: {},
+          positionId: this.positionToEdit.id,
+          position: this.positionToEdit.banners.length
+        }
+        this.locale.form.positionId = this.positionToEdit.id
+        this.locale.form.position = this.positionToEdit.banners.length
+      }
+      this.mediaKey = this.$uid()
+      this.modalSlide = true
+    },
+
+    updateOrCreateSlider(data) {
+      this.loading = true
+      if (this.positionToEdit.id) {
+        this.$crud.update('apiRoutes.qbanner.positions', data.id, data).then(response => {
+          this.$alert.info({message: this.$tr('isite.cms.message.recordUpdated')})
+          this.getData({pagination: this.pagination, search: this.filter.search}, true)
+          this.modalSlider = false
+        }).catch(error => {
+          this.$alert.error({message: this.$tr('isite.cms.message.recordNoUpdated')})
+          this.loading = false
+        })
+      } else {
+        this.$crud.create('apiRoutes.qbanner.positions', data).then(response => {
+          this.$alert.info({message: `${this.$tr('isite.cms.message.recordCreated')}`})
+          this.getData({pagination: this.pagination, search: this.filter.search}, true)
+          this.modalSlider = false
+        }).catch(error => {
+          this.$alert.error({message: `${this.$tr('isite.cms.message.recordNoCreated')}`})
+          this.loading = false
+        })
+      }
+    },
+
+    updateOrCreateSlide() {
+      this.loading = true
+      if (this.bannerToEdit.id) {
+        this.$crud.update('apiRoutes.qbanner.banners', this.bannerToEdit.id, this.locale.form).then(response => {
+          this.$alert.info({message: this.$tr('isite.cms.message.recordUpdated')})
+          this.getData({pagination: this.pagination, search: this.filter.search}, true)
+        }).catch(error => {
+          this.$alert.error({message: this.$tr('isite.cms.message.recordNoUpdated')})
+          this.loading = false
+        })
+      } else {
+        this.$crud.create('apiRoutes.qbanner.banners', this.locale.form).then(response => {
+          this.$alert.info({message: `${this.$tr('isite.cms.message.recordCreated')}`})
+          this.getData({pagination: this.pagination, search: this.filter.search}, true)
+        }).catch(error => {
+          this.$alert.error({message: `${this.$tr('isite.cms.message.recordNoCreated')}`})
+          this.loading = false
+        })
+      }
+
+    },
+
+    deletePosition(id) {
+      this.loading = true
+      this.$crud.delete('apiRoutes.qbanner.positions', id).then(response => {
+        this.$alert.info({message: this.$tr('isite.cms.message.recordDeleted')})
+        this.getData({pagination: this.pagination, search: this.filter.search}, true)
+      }).catch(error => {
+        this.$alert.error({message: this.$tr('isite.cms.message.recordNoDeleted'), pos: 'bottom'})
+        this.loading = false
+      })
+    },
+
+    deleteBanner(slideId, pos) {
+      this.loading = true
+      this.$crud.delete('apiRoutes.qbanner.banners', slideId).then(response => {
+        this.$alert.info({message: this.$tr('isite.cms.message.recordDeleted')})
+        this.positionToEdit.banners.splice(pos, 1)
+        this.getData({pagination: this.pagination, search: this.filter.search}, true)
+      }).catch(error => {
+        this.$alert.error({message: this.$tr('isite.cms.message.recordNoDeleted'), pos: 'bottom'})
+        this.loading = false
+      })
+    },
+
+    //Complete slug Only when is creation
+    setSlug() {
+      if (!this.positionToEdit.id) {
+        //Set slug as title
+        let slug = this.positionToEdit.name.trim().split(' ').join('-').toLowerCase()
+        this.positionToEdit.systemName = this.$clone(slug.normalize('NFD').replace(/[\u0300-\u036f]/g, ''))
+      }
+    },
+
+    hasPermissionRecordMAster(record) {
+      let options = record.options || false
+      let response = {
+        create: true,
+        edit: true,
+        index: true,
+        destroy: true,
+      }
+
+      if (options && parseInt(options.masterRecord)) {
+        response = {
+          create: this.$auth.hasAccess('isite.master.records.create'),
+          edit: this.$auth.hasAccess('isite.master.records.edit'),
+          index: this.$auth.hasAccess('isite.master.records.index'),
+          destroy: this.$auth.hasAccess('isite.master.records.destroy')
+        }
+      }
+
+      return response
     }
   }
+}
 </script>
 <style lang="stylus">
-  #sliderModalEdit
-    .image
-      background-repeat no-repeat
-      background-size contain
-      background-position center center
-      cursor all-scroll
-      height 150px
-      overflow hidden
+#sliderModalEdit
+  .image
+    background-repeat no-repeat
+    background-size contain
+    background-position center center
+    cursor all-scroll
+    height 150px
+    overflow hidden
 </style>

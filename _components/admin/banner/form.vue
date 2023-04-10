@@ -186,9 +186,11 @@
               this.orderDataItemToLocale(response.data)
               resolve(true)//Resolve
             }).catch(error => {
-              this.$alert.error({message: this.$tr('isite.cms.message.errorRequest'), pos: 'bottom'})
-              this.loading = false
-              reject(false)//Resolve
+              this.$apiResponse.handleError(error, () => {
+                this.$alert.error({message: this.$tr('isite.cms.message.errorRequest'), pos: 'bottom'})
+                this.loading = false
+                reject(false)//Resolve
+              })
             })
           } else {
             resolve(true)//Resolve

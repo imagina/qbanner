@@ -73,9 +73,11 @@
           this.position.options = response.data.options || {showAsPopup: '0', masterRecord: '0'}
           this.loading = false
         }).catch( error => {
-          console.warn( error )
-          this.loading = false
-          this.$alert.error({ message: this.$tr('isite.cms.message.errorRequest'), pos: 'bottom' })
+          this.$apiResponse.handleError(error, () => {
+            console.warn(error)
+            this.loading = false
+            this.$alert.error({message: this.$tr('isite.cms.message.errorRequest'), pos: 'bottom'})
+          })
         })
       },
     }
