@@ -49,7 +49,7 @@
     }
   }
 </script>
-<style lang="stylus">
+<style lang="sass">
   #marcasComponent
     text-align center
     border-top 1px solid $grey-11

@@ -60,7 +60,7 @@
         }
     }
 </script>
-<style lang="stylus">
+<style lang="sass">
 
     .custom-caption
         text-align: center
