@@ -68,7 +68,7 @@
     }
   }
 </script>
-<style lang="sass">
+<style lang="scss">
   #carousel
     .q-carousel-slide
       padding 0

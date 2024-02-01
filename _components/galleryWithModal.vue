@@ -157,7 +157,7 @@
   }
 </script>
 
-<style lang="sass">
+<style lang="scss">
   .q-carousel
     .img-fluid
       width 100vw

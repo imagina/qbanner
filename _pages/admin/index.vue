@@ -602,7 +602,7 @@ export default {
   }
 }
 </script>
-<style lang="sass">
+<style lang="scss">
 #sliderModalEdit
   .image
     background-repeat no-repeat
