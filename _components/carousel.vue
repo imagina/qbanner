@@ -13,7 +13,7 @@
                     navigationNextLabel="<i class='fas fa-angle-right'></i>"
                     navigationPrevLabel="<i class='fas fa-angle-left'></i>">
             <slide v-for="(slide, key) in slides" :key="key">
-              <img :src="slide.imageUrl"></img>
+              <img :src="slide.imageUrl" />
             </slide>
           </carousel>
         </div>
@@ -50,19 +50,26 @@
   }
 </script>
 <style lang="scss">
-  #marcasComponent
-    text-align center
-    border-top 1px solid $grey-11
-    &.desktop
-      height 190px
-    img
+  #marcasComponent {
+    text-align: center;
+    border-top: 1px solid $grey-11;
+    &.desktop {
+      height: 190px;
+    }
+    img {
       filter: grayscale(100%);
-      &:hover
-        filter none
-    .VueCarousel-navigation
-      padding 20px auto
-      .VueCarousel-navigation-button
-        font-size 31px
-      i
-        color $grey-6 !important
+      &:hover {
+        filter: none;
+      }
+    }
+    .VueCarousel-navigation {
+      padding: 20px auto;
+      .VueCarousel-navigation-button {
+        font-size: 31px;
+      }
+      i {
+        color: $grey-6 !important;
+      }
+    }
+  }
 </style>
