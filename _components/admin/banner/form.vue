@@ -99,7 +99,7 @@
 </template>
 
 <script>
-  import mediaForm from '@imagina/qmedia/_components/form'
+  import mediaForm from 'modules/qmedia/_components/form'
 
   export default {
     components:{

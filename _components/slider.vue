@@ -42,7 +42,7 @@
 </template>
 <script>
   /*Services*/
-  import sliderServices from '@imagina/qbanner/_services/slider'
+  import sliderServices from 'modules/qbanner/_services/slider'
   export default {
     props: {
       id : {default:1}
