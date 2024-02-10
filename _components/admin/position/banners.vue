@@ -3,7 +3,7 @@
     <div class="col-12">
       <!---Component CRUD Slided -->
       <div class="text-right q-mb-md">
-        <crud :crud-data="import('@imagina/qbanner/_crud/banners')" ref="crudBanner"
+        <crud :crud-data="import('modules/qbanner/_crud/banners')" ref="crudBanner"
               type="button-create" :crud-props="{unelevated : true, rounded : true}"
               @updated="$emit('refresh')" @created="$emit('refresh')"
               :custom-data="{formLeft : {positionId: {value : $route.params.id}}}"/>
@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import renderMedia from '@imagina/qbanner/_components/admin/banner/renderMedia'
+import renderMedia from 'modules/qbanner/_components/admin/banner/renderMedia'
 import draggable from 'vuedraggable'
 
 export default {

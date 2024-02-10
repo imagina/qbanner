@@ -30,8 +30,8 @@
 </template>
 
 <script>
-  import positionForm from '@imagina/qbanner/_components/admin/position/form'
-  import positionBanners from '@imagina/qbanner/_components/admin/position/banners'
+  import positionForm from 'modules/qbanner/_components/admin/position/form'
+  import positionBanners from 'modules/qbanner/_components/admin/position/banners'
 
   export default {
     components:{

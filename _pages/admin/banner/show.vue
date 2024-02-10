@@ -24,7 +24,7 @@
 </template>
 
 <script>
-  import formSlide from '@imagina/qbanner/_components/admin/banner/form'
+  import formSlide from 'modules/qbanner/_components/admin/banner/form'
 
   export default {
     components:{
