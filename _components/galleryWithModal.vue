@@ -35,7 +35,7 @@
       </q-carousel-slide>
       <template v-slot:control>
         <q-carousel-control position="top-right">
-          <q-btn round dense color="primary" icon="close"
+          <q-btn round dense color="primary" icon="fa fa-close"
                  @click="$refs.carouselGallery.toggleFullscreen();visibleCarousel=false"/>
         </q-carousel-control>
       </template>
