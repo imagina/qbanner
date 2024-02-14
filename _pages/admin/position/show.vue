@@ -40,6 +40,7 @@
 <script>
   import positionForm from 'modules/qbanner/_components/admin/position/form'
   import positionBanners from 'modules/qbanner/_components/admin/position/banners'
+  import { eventBus } from 'src/plugins/utils'
 
   export default {
     name: 'positionShow',
@@ -54,11 +55,11 @@
       }
     },
     beforeDestroy () {
-      this.$root.$off('deleteBanner', this.getPosition)
+      eventBus.off('deleteBanner', this.getPosition)
     },
     created() {
       this.getPosition(true)
-      this.$root.$on('deleteBanner', this.getPosition)
+      eventBus.on('deleteBanner', this.getPosition)
     },
     methods:{
       getPosition( refresh = false ){

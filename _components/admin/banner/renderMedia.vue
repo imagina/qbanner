@@ -5,6 +5,7 @@
 </template>
 
 <script>
+  import { eventBus } from 'src/plugins/utils'
   export default {
     props:{
       banner:{
@@ -31,7 +32,7 @@
           this.$crud.delete('apiRoutes.qbanner.banners', slideId).then(response => {
             this.$alert.info({ message: this.$tr('isite.cms.message.recordDeleted') })
             //this.position.banners.splice(pos, 1)
-            this.$root.$emit('deleteBanner', 'deleteBanner')
+            eventBus.emit('deleteBanner', 'deleteBanner')
           }).catch(error => {
             this.$alert.error({ message: this.$tr('isite.cms.message.recordNoDeleted'), pos: 'bottom' })
           })

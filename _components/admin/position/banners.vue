@@ -9,27 +9,33 @@
               :custom-data="{formLeft : {positionId: {value : $route.params.id}}}"/>
       </div>
       <!--Items-->
-      <draggable @change="updateOrderBanners" v-model="position.banners" group="banners">
-        <!--Item-->
-        <q-card class="my-card q-mb-md" v-for="(banner,index) in position.banners" :key="'banner'+index">
-          <div class="row items-center q-pa-sm">
-            <!--Title-->
-            <div class="col-6">
-              <q-chip square icon="fas fa-images" text-color="white" :color="banner.active ? 'green' : 'grey'">
-                {{ banner.title }}
-              </q-chip>
+      <draggable
+        @change="updateOrderBanners"
+        v-model="position.banners"
+        group="banners"
+        item-key="name"
+      >
+        <template #item="{ banner, index }">
+          <!--Item-->
+          <q-card class="my-card q-mb-md" :key="'banner'+index">
+            <div class="row items-center q-pa-sm">
+              <!--Title-->
+              <div class="col-6">
+                <q-chip square icon="fas fa-images" text-color="white" :color="banner.active ? 'green' : 'grey'">
+                  {{ banner.title }}
+                </q-chip>
+              </div>
+              <!--Actions-->
+              <div class="col-6 text-right">
+                <q-btn color="blue-4" size="sm" round icon="fas fa-pen" unelevated class="q-mr-sm"
+                       @click="$refs.crudBanner.update(banner)"/>
+                <q-btn @click="deleteBannerDialog(banner.id, index)" color="red" unelevated
+                       size="sm" round icon="far fa-trash-alt"/>
+              </div>
             </div>
-            <!--Actions-->
-            <div class="col-6 text-right">
-              <q-btn color="blue-4" size="sm" round icon="fas fa-pen" unelevated class="q-mr-sm"
-                     @click="$refs.crudBanner.update(banner)"/>
-              <q-btn @click="deleteBannerDialog(banner.id, index)" color="red" unelevated
-                     size="sm" round icon="far fa-trash-alt"/>
-            </div>
-          </div>
-          <q-separator/>
-          <div class="full-width" v-if="banner.imageUrl">
-            <iframe
+            <q-separator/>
+            <div class="full-width" v-if="banner.imageUrl">
+              <iframe
                 v-if="~banner.imageUrl.indexOf('youtube.com')"
                 width="100%"
                 height="300"
@@ -37,17 +43,17 @@
                 frameborder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
-            </iframe>
-            <video
+              </iframe>
+              <video
                 width="100%"
                 height="300"
                 v-else-if="~banner.imageUrl.indexOf('.mp4')"
                 class='img-responsive center-block'
                 loop
                 controls='false'>
-              <source :src="banner.imageUrl" type='video/mp4'>
-            </video>
-            <div
+                <source :src="banner.imageUrl" type='video/mp4'>
+              </video>
+              <div
                 v-else
                 :style="`
         background: url('${banner.imageUrl}');
@@ -56,10 +62,10 @@
         height: 300px;
         display: block;
         max-width: 100%;`">
+              </div>
             </div>
-          </div>
-          <div class="full-width" v-else-if="banner.url">
-            <iframe
+            <div class="full-width" v-else-if="banner.url">
+              <iframe
                 v-if="~banner.url.indexOf('youtube.com')"
                 width="100%"
                 height="300"
@@ -67,18 +73,19 @@
                 frameborder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
-            </iframe>
-            <video
+              </iframe>
+              <video
                 width="100%"
                 height="300"
                 v-else-if="~banner.url.indexOf('.mp4')"
                 class='img-responsive center-block'
                 loop
                 controls='false'>
-              <source :src="banner.url" type='video/mp4'>
-            </video>
-          </div>
-        </q-card>
+                <source :src="banner.url" type='video/mp4'>
+              </video>
+            </div>
+          </q-card>
+        </template>
       </draggable>
     </div>
     <!--Loading-->
@@ -89,6 +96,7 @@
 <script>
 import renderMedia from 'modules/qbanner/_components/admin/banner/renderMedia'
 import draggable from 'vuedraggable'
+import { eventBus } from 'src/plugins/utils'
 
 export default {
   name: 'positionBanners',
@@ -174,7 +182,7 @@ export default {
         this.$crud.delete('apiRoutes.qbanner.banners', bannerId).then(response => {
           this.$alert.info({message: this.$tr('isite.cms.message.recordDeleted')})
           //this.position.banners.splice(pos, 1)
-          this.$root.$emit('deleteBanner', 'deleteBanner')
+          eventBus.emit('deleteBanner', 'deleteBanner')
         }).catch(error => {
           this.$alert.error({message: this.$tr('isite.cms.message.recordNoDeleted'), pos: 'bottom'})
         })

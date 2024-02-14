@@ -32,6 +32,7 @@
 <script>
   import positionForm from 'modules/qbanner/_components/admin/position/form'
   import positionBanners from 'modules/qbanner/_components/admin/position/banners'
+  import { eventBus } from 'src/plugins/utils'
 
   export default {
     components:{
@@ -39,8 +40,8 @@
       positionBanners
     },
     beforeDestroy () {
-      this.$root.$off('deleteBanner', this.getPosition)
-      this.$root.$off('page.data.refresh')
+      eventBus.off('deleteBanner', this.getPosition)
+      eventBus.off('page.data.refresh')
     },
     mounted() {
       this.init()
@@ -53,9 +54,9 @@
     },
     methods:{
       init(){
-        this.$root.$on('page.data.refresh', () => this.getPosition(true))//Listen refresh event
+        eventBus.on('page.data.refresh', () => this.getPosition(true))//Listen refresh event
         this.getPosition(true)
-        this.$root.$on('deleteSlide', this.getPosition)
+        eventBus.on('deleteSlide', this.getPosition)
       },
       //Get position data
       getPosition( refresh = false ){
