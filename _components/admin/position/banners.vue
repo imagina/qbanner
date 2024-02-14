@@ -96,6 +96,7 @@
 <script>
 import renderMedia from 'modules/qbanner/_components/admin/banner/renderMedia'
 import draggable from 'vuedraggable'
+import { eventBus } from 'src/plugins/utils'
 
 export default {
   name: 'positionBanners',
@@ -181,7 +182,7 @@ export default {
         this.$crud.delete('apiRoutes.qbanner.banners', bannerId).then(response => {
           this.$alert.info({message: this.$tr('isite.cms.message.recordDeleted')})
           //this.position.banners.splice(pos, 1)
-          this.$root.$emit('deleteBanner', 'deleteBanner')
+          eventBus.emit('deleteBanner', 'deleteBanner')
         }).catch(error => {
           this.$alert.error({message: this.$tr('isite.cms.message.recordNoDeleted'), pos: 'bottom'})
         })
