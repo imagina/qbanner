@@ -10,7 +10,7 @@
             <q-input clearable v-model="filter.search" dense outlined debounce="800"
                      :placeholder="`${$tr('isite.cms.label.search',{capitalize : true})}...`"
                      style="max-width: 200px" class="float-left"
-                     @input="getData({pagination:pagination,search:filter.search})">
+                     @update:modelValue="getData({pagination:pagination,search:filter.search})">
               <template v-slot:append>
                 <q-icon name="search"/>
               </template>
@@ -93,7 +93,7 @@
                     v-if="pagination.rowsNumber > 1"
                     v-model="pagination.page"
                     color="primary"
-                    @input="getData({pagination:pagination,search:filter.search})"
+                    @update:modelValue="getData({pagination:pagination,search:filter.search})"
                     :max="pagination.rowsNumber"
                     :max-pages="6"
                     boundary-links
@@ -118,7 +118,7 @@
               <q-td slot="body-cell-actions"
                     slot-scope="props" :props="props">
                 <!--== Slider Active ==-->
-                <q-toggle v-model="props.row.active" @input="updateOrCreateSlider(props.row)">
+                <q-toggle v-model="props.row.active" @update:modelValue="updateOrCreateSlider(props.row)">
                   <q-tooltip :offset="[5, 5]">
                     {{ props.row.active ? 'Unactive' : 'Active' }}
                   </q-tooltip>
@@ -198,7 +198,7 @@
                       autocomplete="off">
                 <q-input :label="`${$tr('isite.cms.form.name')} *`" type="text" outlined dense
                          :rules="[val => !!val || $tr('isite.cms.message.fieldRequired')]"
-                         @input="setSlug()" v-model="positionToEdit.name"/>
+                         @update:modelValue="setSlug()" v-model="positionToEdit.name"/>
                 <!--System Name-->
                 <q-input :label="`${$tr('isite.cms.form.slug')} *`" type="text" outlined dense
                          :rules="[val => !!val || $tr('isite.cms.message.fieldRequired')]"
