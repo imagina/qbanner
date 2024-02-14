@@ -167,23 +167,29 @@
               <q-btn icon="add" color="green" class="q-mx-xs btn-small"
                      @click="showSlideModal(false)" :label="$tr('ibanners.cms.newBannerItem')"/>
               <!---Draggable-->
-              <draggable v-model="positionToEdit.banners" group="slides">
-                <div v-for="(slide,index) in positionToEdit.banners" :key="'slide'+index"
-                     :style="'background-image: url('+slide.imageUrl+'); position:relative'"
-                     class="image border q-my-sm col-12 col-sm-4 col-md-3">
-                  <div style="bottom: 5px; right: 5px; position: absolute;">
-                    <q-btn icon="fas fa-pen" color="green" size="xs" class="q-mx-xs"
-                           v-if="hasPermissionRecordMAster(slide).edit"
-                           @click="showSlideModal(slide)">
-                      <q-tooltip>{{ $tr('isite.cms.label.edit') }}</q-tooltip>
-                    </q-btn>
-                    <q-btn icon="far fa-trash-alt" color="red" size="xs" class="q-mx-xs"
-                           v-if="hasPermissionRecordMAster(slide).destroy"
-                           @click="deleteBanner(slide.id, index)">
-                      <q-tooltip>{{ $tr('isite.cms.label.delete') }}</q-tooltip>
-                    </q-btn>
+              <draggable 
+                v-model="positionToEdit.banners" 
+                group="slides"
+                item-key="name"
+              >
+                <template #item="{ slide, index }">
+                  <div :key="'slide'+index"
+                       :style="'background-image: url('+slide.imageUrl+'); position:relative'"
+                       class="image border q-my-sm col-12 col-sm-4 col-md-3">
+                    <div style="bottom: 5px; right: 5px; position: absolute;">
+                      <q-btn icon="fas fa-pen" color="green" size="xs" class="q-mx-xs"
+                             v-if="hasPermissionRecordMAster(slide).edit"
+                             @click="showSlideModal(slide)">
+                        <q-tooltip>{{ $tr('isite.cms.label.edit') }}</q-tooltip>
+                      </q-btn>
+                      <q-btn icon="far fa-trash-alt" color="red" size="xs" class="q-mx-xs"
+                             v-if="hasPermissionRecordMAster(slide).destroy"
+                             @click="deleteBanner(slide.id, index)">
+                        <q-tooltip>{{ $tr('isite.cms.label.delete') }}</q-tooltip>
+                      </q-btn>
+                    </div>
                   </div>
-                </div>
+                </template>
               </draggable>
             </div>
             <div :class="'col-12 '+ (positionToEdit.id ? 'col-md-5' : '')">
