@@ -92,6 +92,7 @@ import draggable from 'vuedraggable'
 
 export default {
   name: 'positionBanners',
+  emits: ['refresh'],
   components: {
     draggable,
     renderMedia
