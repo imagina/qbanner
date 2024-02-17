@@ -144,10 +144,10 @@ export default {
       }
       if (options && parseInt(options.masterRecord)) {
         response = {
-          create: this.$auth.hasAccess('isite.master.records.create'),
-          edit: this.$auth.hasAccess('isite.master.records.edit'),
-          index: this.$auth.hasAccess('isite.master.records.index'),
-          destroy: this.$auth.hasAccess('isite.master.records.destroy')
+          create: this.$hasAccess('isite.master.records.create'),
+          edit: this.$hasAccess('isite.master.records.edit'),
+          index: this.$hasAccess('isite.master.records.index'),
+          destroy: this.$hasAccess('isite.master.records.destroy')
         }
       }
       return response

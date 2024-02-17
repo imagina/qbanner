@@ -149,10 +149,10 @@
       },
       canManageRecordMaster () {
         let response = true
-        if (this.$route.params.positionId.id && !this.$auth.hasAccess('isite.master.records.edit')) {
+        if (this.$route.params.positionId.id && !this.$hasAccess('isite.master.records.edit')) {
           response = false
         }
-        if (!this.$route.params.positionId.id && !this.$auth.hasAccess('isite.master.records.create')) {
+        if (!this.$route.params.positionId.id && !this.$hasAccess('isite.master.records.create')) {
           response = false
         }
         return response

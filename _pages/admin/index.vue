@@ -31,7 +31,7 @@
               </q-btn-group>
               <!--Button new record-->
               <q-btn icon="fas fa-edit" color="green" :label="$tr('ibanners.cms.newBanner')"
-                     @click="showSliderModal(false)" v-if="$auth.hasAccess('ibanners.positions.create')"/>
+                     @click="showSliderModal(false)" v-if="$hasAccess('ibanners.positions.create')"/>
               <!--Button refresh data-->
               <q-btn color="info" icon="fas fa-sync" class="q-ml-sm"
                      @click="getData({pagination:pagination,search:filter.search},true)">
@@ -71,7 +71,7 @@
                   <!--== Slider Edit ==-->
                   <q-btn icon="fas fa-pen" color="green" size="sm" class="q-mx-xs"
                          :to="{name: 'qbanner.admin.sliders.show', params: {id: slider.id}}"
-                         v-if="$auth.hasAccess('slider.sliders.edit') && hasPermissionRecordMAster(slider).edit">
+                         v-if="$hasAccess('slider.sliders.edit') && hasPermissionRecordMAster(slider).edit">
                     <q-tooltip :offset="[5, 5]">
                       {{ $tr('isite.cms.label.edit') }}
                     </q-tooltip>
@@ -80,7 +80,7 @@
                   <!--== Slider Delete ==-->
                   <q-btn icon="far fa-trash-alt" color="red" size="sm"
                          class="q-mx-xs" @click="dialogDeleteSlider.handler(slider.id)"
-                         v-if="$auth.hasAccess('slider.sliders.destroy') && hasPermissionRecordMAster(slider).destroy">
+                         v-if="$hasAccess('slider.sliders.destroy') && hasPermissionRecordMAster(slider).destroy">
                     <q-tooltip :offset="[5, 5]">
                       {{ $tr('isite.cms.label.delete') }}
                     </q-tooltip>
@@ -130,7 +130,7 @@
                     size="sm"
                     class="q-mx-xs"
                     @click="showSliderModal(props.row)"
-                    v-if="$auth.hasAccess('slider.sliders.edit')"/>
+                    v-if="$hasAccess('slider.sliders.edit')"/>
 
                 <q-btn
                     icon="far fa-trash-alt"
@@ -138,7 +138,7 @@
                     size="sm"
                     class="q-mx-xs"
                     @click="dialogDeleteSlider.handler(props.row.id)"
-                    v-if="$auth.hasAccess('slider.sliders.destroy')"/>
+                    v-if="$hasAccess('slider.sliders.destroy')"/>
               </q-td>
 
             </q-table>
@@ -167,8 +167,8 @@
               <q-btn icon="add" color="green" class="q-mx-xs btn-small"
                      @click="showSlideModal(false)" :label="$tr('ibanners.cms.newBannerItem')"/>
               <!---Draggable-->
-              <draggable 
-                v-model="positionToEdit.banners" 
+              <draggable
+                v-model="positionToEdit.banners"
                 group="slides"
                 item-key="name"
               >
@@ -415,10 +415,10 @@ export default {
     canManageRecordMaster() {
       let response = true
 
-      if (this.positionToEdit.id && !this.$auth.hasAccess('isite.master.records.edit')) {
+      if (this.positionToEdit.id && !this.$hasAccess('isite.master.records.edit')) {
         response = false
       }
-      if (!this.positionToEdit.id && !this.$auth.hasAccess('isite.master.records.create')) {
+      if (!this.positionToEdit.id && !this.$hasAccess('isite.master.records.create')) {
         response = false
       }
 
@@ -596,10 +596,10 @@ export default {
 
       if (options && parseInt(options.masterRecord)) {
         response = {
-          create: this.$auth.hasAccess('isite.master.records.create'),
-          edit: this.$auth.hasAccess('isite.master.records.edit'),
-          index: this.$auth.hasAccess('isite.master.records.index'),
-          destroy: this.$auth.hasAccess('isite.master.records.destroy')
+          create: this.$hasAccess('isite.master.records.create'),
+          edit: this.$hasAccess('isite.master.records.edit'),
+          index: this.$hasAccess('isite.master.records.index'),
+          destroy: this.$hasAccess('isite.master.records.destroy')
         }
       }
 
