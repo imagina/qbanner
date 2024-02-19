@@ -12,7 +12,7 @@
                      style="max-width: 200px" class="float-left"
                      @update:modelValue="getData({pagination:pagination,search:filter.search})">
               <template v-slot:append>
-                <q-icon name="search"/>
+                <q-icon name="fas fa-search"/>
               </template>
             </q-input>
 
