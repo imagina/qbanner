@@ -60,8 +60,8 @@
 
                   <template v-slot:control>
                     <q-carousel-control position="bottom-right" :offset="[18, 18]">
-                      <q-btn push round dense color="white" text-color="primary" icon="fullscreen"
-                             :icon="carouselFullScreen[slider.id] ? 'fullscreen_exit' : 'fullscreen'"
+                      <q-btn push round dense color="white" text-color="primary" icon="fa-light fa-expand"
+                             :icon="carouselFullScreen[slider.id] ? 'fa-light fa-compress' : 'fa-light fa-expand'"
                              @click="carouselFullScreen[slider.id] = !carouselFullScreen[slider.id]"/>
                     </q-carousel-control>
                   </template>
