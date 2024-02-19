@@ -12,7 +12,7 @@
                      style="max-width: 200px" class="float-left"
                      @update:modelValue="getData({pagination:pagination,search:filter.search})">
               <template v-slot:append>
-                <q-icon name="search"/>
+                <q-icon name="fas fa-search"/>
               </template>
             </q-input>
 
@@ -164,7 +164,7 @@
           <div class=" q-pa-md row q-col-gutter-md">
             <div v-if="positionToEdit.id" class="col-12 col-md-7 text-right">
               <!--Button add new-->
-              <q-btn icon="add" color="green" class="q-mx-xs btn-small"
+              <q-btn icon="fa-light fa-plus" color="green" class="q-mx-xs btn-small"
                      @click="showSlideModal(false)" :label="$tr('ibanners.cms.newBannerItem')"/>
               <!---Draggable-->
               <draggable
