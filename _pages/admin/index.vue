@@ -170,21 +170,21 @@
               <draggable
                 v-model="positionToEdit.banners"
                 group="slides"
-                item-key="name"
+                item-key="id"
               >
-                <template #item="{ slide, index }">
+                <template #item="{ element, index }">
                   <div :key="'slide'+index"
-                       :style="'background-image: url('+slide.imageUrl+'); position:relative'"
+                       :style="'background-image: url('+element.imageUrl+'); position:relative'"
                        class="image border q-my-sm col-12 col-sm-4 col-md-3">
                     <div style="bottom: 5px; right: 5px; position: absolute;">
                       <q-btn icon="fas fa-pen" color="green" size="xs" class="q-mx-xs"
-                             v-if="hasPermissionRecordMAster(slide).edit"
-                             @click="showSlideModal(slide)">
+                             v-if="hasPermissionRecordMAster(element).edit"
+                             @click="showSlideModal(element)">
                         <q-tooltip>{{ $tr('isite.cms.label.edit') }}</q-tooltip>
                       </q-btn>
                       <q-btn icon="far fa-trash-alt" color="red" size="xs" class="q-mx-xs"
-                             v-if="hasPermissionRecordMAster(slide).destroy"
-                             @click="deleteBanner(slide.id, index)">
+                             v-if="hasPermissionRecordMAster(element).destroy"
+                             @click="deleteBanner(element.id, index)">
                         <q-tooltip>{{ $tr('isite.cms.label.delete') }}</q-tooltip>
                       </q-btn>
                     </div>
