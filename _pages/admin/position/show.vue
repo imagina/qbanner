@@ -54,7 +54,7 @@
         positionData:{}
       }
     },
-    beforeDestroy () {
+    beforeUnmount () {
       eventBus.off('deleteBanner', this.getPosition)
     },
     created() {
