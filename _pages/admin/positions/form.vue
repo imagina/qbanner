@@ -39,7 +39,7 @@
       positionForm,
       positionBanners
     },
-    beforeDestroy () {
+    beforeUnmount () {
       eventBus.off('deleteBanner', this.getPosition)
       eventBus.off('page.data.refresh')
     },
