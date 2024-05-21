@@ -107,7 +107,7 @@
           <div class="col-12" v-if="viewTable">
             <q-table
                 :loading="loading"
-                :data="dataTable"
+                :rows="dataTable"
                 :columns="columns"
                 :pagination.sync="pagination"
                 row-key="filename"
