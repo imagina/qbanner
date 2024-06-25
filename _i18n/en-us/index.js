@@ -1,7 +1,22 @@
-import layout from 'modules/qbanner/_i18n/en-us/layout'
-import sidebar from 'modules/qbanner/_i18n/en-us/sidebar'
-
 export default {
-  layout,
-  sidebar
+  "ibanners": {
+    "cms": {
+      "sidebar": {
+        "adminBanner": "Banners",
+        "adminBannerEdit": "Edit Banner"
+      },
+      "newBanner": "New Banner",
+      "updateSlider": "Update Banner",
+      "createSlider": "Create Banner",
+      "newBannerItem": "New Item",
+      "updateSlide": "Update Item",
+      "label": {
+        "codeAds": "Code ADS",
+        "showAsPopup": "Show as Popup"
+      },
+      "documentation": {
+        "banners": "Banners are static elements in defined locations within the WEB site that display a normally large advertising content"
+      }
+    }
+  }
 }
