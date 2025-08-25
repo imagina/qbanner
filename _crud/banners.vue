@@ -127,7 +127,7 @@
               props: {
                 label: this.$tr('isite.cms.form.image'),
                 zone: 'bannerimage',
-                entity: "Modules\\Ibanners\\Entities\\Banner",
+                entity: "Modules\\Ibanners\\Models\\Banner",
                 entityId: null
               }
             }
